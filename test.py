@@ -1,20 +1,14 @@
 import unittest
+import word_ladder_class
 
 class TestWordLadder(unittest.TestCase):
 
-    def test_upper(self):
-        self.assertEqual('foo'.upper(), 'FOO')
+    def test_wordladder_same(self):
+        word_game = word_ladder_class.WordLadder()
+        self.assertEqual(word_game.same('gien','gold'), 1)
 
-    def test_isupper(self):
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
-
-    def test_split(self):
-        s = 'hello world'
-        self.assertEqual(s.split(), ['hello', 'world'])
-        # check that s.split fails when the separator is not a string
-        with self.assertRaises(TypeError):
-            s.split(2)
+    def test_wordladder_start(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()
