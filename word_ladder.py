@@ -26,10 +26,11 @@ class WordLadder:
             print("No path found")
 
     def same(self, item, target):
-        print([item,target,len([c for (c, t) in zip(item, target) if c == t])])
+        # print([item,target,len([c for (c, t) in zip(item, target) if c == t])])
         return len([c for (c, t) in zip(item, target) if c == t])
 
     def build(self, pattern, words, seen, item_list):
+        # print(pattern, words, seen, item_list)
         return [word for word in words
                 if re.search(pattern, word) and word not in seen.keys() and
                 word not in item_list]
@@ -52,7 +53,7 @@ class WordLadder:
             if self.find(item, words, seen, target, path):
                 return True
             path.pop()
-
 word_game = WordLadder()
-word_game.start()
+
+# word_game.start()
 
