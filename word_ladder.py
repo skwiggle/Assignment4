@@ -1,11 +1,12 @@
 import re
 #Created class WordLadder to be called upon later on
 class WordLadder:
-#added self to all methods inside the created class
-    def start(self, fname, start, target):
-
+    # added self to all methods inside the created class
+    def start(self):
         fname = input("Enter dictionary name: ")
-
+        #added error message for incorrect user inputs
+        while fname != "dictionary.txt":
+            fname = input("Invalid dictionary name, please enter a valid one.")
         file = open(fname)
         lines = file.readlines()
         while True:
@@ -18,12 +19,23 @@ class WordLadder:
             target = input("Enter target word:")
             #added middle variable to help with extra required function
             middle=input("Enter middle word:")
+
             break
         path = [start]
         seen = {start: True}
-
+        #added error messages to inputs
+        while start not in words:
+            start = input("Please enter a starting word that exists in the requested dictionary.")
+        while target not in words:
+            target = input("Please enter a target word that exists in the requested dictionary.")
+        #added error messages for if the two inputs were not of the right length
+        if len(start) != len(target):
+            return "Error: Words are of different lengths."
+        elif len(start) != len(middle):
+            return "Error: Words are of different lengths."
+        elif len(middle) != len(target):
+            return "Error: Words are of different lengths."
         file.close()
-
         #added middle clause to add a middle word
         if middle != "":
             if self.find(start, words, seen, middle, path):
@@ -31,16 +43,11 @@ class WordLadder:
                 if self.find(middle, words, seen, target, path):
                     path.append(target)
                     return len(path) - 1, path
-                #added previous clause made to dictate shortest distance from code below
                 else:
+                    # added previous clause made to dictate shortest distance from code above
                     print("No path found")
             else:
                 print("No path found")
-
-        if self.find(start, words, seen, target, path):
-            path.append(target)
-            return (len(path) - 1, path)
-
         else:
             if self.find(start, words, seen, target, path):
                 path.append(target)
@@ -57,11 +64,11 @@ class WordLadder:
                 word not in item_list]
 
     def find(self, word, words, seen, target, path):
-        #added matchingletters variable
+        # added matchingletters variable
         matchingletters = []
-        #renamed list to item_list to avoid confusion
+        # renamed list to item_list to avoid confusion
         item_list = []
-        #inserted logic for shortening distance between word and target
+        # inserted logic for shortening distance between word and target
         if (sum(1 for (c, t) in zip(word, target) if c == t)) > 0:
             matchingletters = [i for i, x in enumerate(zip(word, target)) if all(y == x[0] for y in x)]
         for i in range(len(word)):
@@ -70,7 +77,7 @@ class WordLadder:
         if len(item_list) == 0:
             return False
         item_list = sorted([(self.same(w, target), w) for w in item_list], reverse=True)
-        #above code allows the word to get to the target as soon as possible rather than exhausting every outcome as seen prior
+        # above code allows the word to get to the target as soon as possible rather than exhausting every outcome as seen prior
         for (match, item) in item_list:
             if match >= len(target) - 1:
                 if match == len(target) - 1:
@@ -82,7 +89,7 @@ class WordLadder:
             if self.find(item, words, seen, target, path):
                 return True
             path.pop()
-
+#used to export for unit testing
 word_game = WordLadder()
-#used for correct acceptance testing
-print(word_game.start("dictionary.txt", "lead", "gold"))
+#prints word_game as final output through class
+print(word_game.start())
