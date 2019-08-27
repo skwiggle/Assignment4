@@ -36,6 +36,7 @@ class WordLadder:
                 word not in item_list]
 
     def find(self, word, words, seen, target, path):
+        #print(word, words, seen, target, path)
         item_list = []
         for i in range(len(word)):
             item_list += self.build(word[:i] + "." + word[i + 1:], words, seen, item_list)
@@ -53,7 +54,7 @@ class WordLadder:
             if self.find(item, words, seen, target, path):
                 return True
             path.pop()
-word_game = WordLadder()
 
-# word_game.start()
+word_game = WordLadder()
+word_game.start()
 
