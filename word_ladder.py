@@ -16,19 +16,19 @@ class WordLadder:
                 word = line.rstrip()
                 if len(word) == len(start):
                     words.append(word)
-<<<<<<< HEAD
+
             #commented out to help with testing
             #target = input("Enter target word:")
             #added middle variable to help with extra required function
             middle=input("Enter middle word:")
-=======
->>>>>>> origin/master
+
+
             break
         path = [start]
         seen = {start: True}
 
         file.close()
-<<<<<<< HEAD
+
         #added middle clause to add a middle word
         if middle != "":
             if self.find(start, words, seen, middle, path):
@@ -41,11 +41,11 @@ class WordLadder:
                     print("No path found")
             else:
                 print("No path found")
-=======
+
         if self.find(start, words, seen, target, path):
             path.append(target)
             return (len(path) - 1, path)
->>>>>>> origin/master
+
         else:
             if self.find(start, words, seen, target, path):
                 path.append(target)
