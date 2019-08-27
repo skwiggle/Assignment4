@@ -16,16 +16,42 @@ class WordLadder:
                 word = line.rstrip()
                 if len(word) == len(start):
                     words.append(word)
+<<<<<<< HEAD
+            #commented out to help with testing
+            #target = input("Enter target word:")
+            #added middle variable to help with extra required function
+            middle=input("Enter middle word:")
+=======
+>>>>>>> origin/master
             break
         path = [start]
         seen = {start: True}
 
         file.close()
+<<<<<<< HEAD
+        #added middle clause to add a middle word
+        if middle != "":
+            if self.find(start, words, seen, middle, path):
+                path.append(middle)
+                if self.find(middle, words, seen, target, path):
+                    path.append(target)
+                    return len(path) - 1, path
+                #added previous clause made to dictate shortest distance from code below
+                else:
+                    print("No path found")
+            else:
+                print("No path found")
+=======
         if self.find(start, words, seen, target, path):
             path.append(target)
             return (len(path) - 1, path)
+>>>>>>> origin/master
         else:
-            print("No path found")
+            if self.find(start, words, seen, target, path):
+                path.append(target)
+                return len(path) - 1, path
+            else:
+                print("No path found")
 
     def same(self, item, target):
         return len([c for (c, t) in zip(item, target) if c == t])
