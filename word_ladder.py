@@ -3,26 +3,21 @@ import re
 class WordLadder:
 #added self to all methods inside the created class
     def start(self, fname, start, target):
-        #Commented out the input to allow for automated testing in bottom of code
-        # fname = input("Enter dictionary name: ")
+
+        fname = input("Enter dictionary name: ")
 
         file = open(fname)
         lines = file.readlines()
         while True:
-            # Commented out the input to allow for automated testing in bottom of code
-            # start = input("Enter start word:")
+            start = input("Enter start word:")
             words = []
             for line in lines:
                 word = line.rstrip()
                 if len(word) == len(start):
                     words.append(word)
-
-            #commented out to help with testing
-            #target = input("Enter target word:")
+            target = input("Enter target word:")
             #added middle variable to help with extra required function
             middle=input("Enter middle word:")
-
-
             break
         path = [start]
         seen = {start: True}
@@ -91,4 +86,3 @@ class WordLadder:
 word_game = WordLadder()
 #used for correct acceptance testing
 print(word_game.start("dictionary.txt", "lead", "gold"))
-
